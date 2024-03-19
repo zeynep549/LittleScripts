@@ -1,0 +1,59 @@
+class Solution {
+    public int maxDepth(TreeNode root) {
+        int countleft = 1;
+        int countright = 1;
+        int count = 0;
+        Queue<TreeNode>q = new   LinkedList<>();
+        q.add(root);
+        
+        while(root.left!= null)
+            {
+            root = root.left;
+            
+            countleft++;
+            }
+            
+            
+            root = q.poll();
+        
+        while(root.right != null)
+            {
+            root = root.right;
+           
+            countright++;
+            }
+             count = Math.max(countleft,countright);
+            return count;
+class Solution
+{
+public:
+    int maxDepth(TreeNode *root)
+    {
+        if (!root)
+            return 0;
+        queue<TreeNode *> q;
+        int ans = 0, count = 0;
+        TreeNode *cur;
+        q.push(root);
+        while (!q.empty())
+        {
+            ans++, count = q.size();
+            while (count--)
+            {
+                cur = q.front();
+                if (cur->left != NULL)
+                    q.push(cur->left);
+                if (cur->right != NULL)
+                    q.push(cur->right);
+                q.pop();
+            }
+        }
+        return ans;
+    }
+};
+
+            
+        }
+       
+        
+    }

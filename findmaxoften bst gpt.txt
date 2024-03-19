@@ -1,0 +1,56 @@
+class TreeNode {
+    int val;
+    TreeNode left;
+    TreeNode right;
+
+    TreeNode(int val) {
+        this.val = val;
+    }
+}
+
+public class MostFrequentElementInBST {
+    private int maxCount = 0;
+    private int currentCount = 0;
+    private int previousValue = Integer.MIN_VALUE;
+    private int mostFrequentElement;
+    
+    public int findMostFrequentElement(TreeNode root) {
+        inorderTraversal(root);
+        return mostFrequentElement;
+    }
+
+    private void inorderTraversal(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+
+        inorderTraversal(root.left);
+
+        if (root.val == previousValue) {
+            currentCount++;
+        } else {
+            currentCount = 1;
+        }
+
+        if (currentCount > maxCount) {
+            maxCount = currentCount;
+            mostFrequentElement = root.val;
+        }
+
+        previousValue = root.val;
+
+        inorderTraversal(root.right);
+    }
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(2);
+        root.left = new TreeNode(1);
+        root.right = new TreeNode(3);
+        root.right.right = new TreeNode(3);
+
+        MostFrequentElementInBST finder = new MostFrequentElementInBST();
+        int mostFrequent = finder.findMostFrequentElement(root);
+
+        System.out.println("Most frequent element in the BST: " + mostFrequent);
+    }
+}

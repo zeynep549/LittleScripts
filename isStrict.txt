@@ -1,0 +1,28 @@
+ public boolean isStrictTree(TreeNode node) {
+
+            if (node == null) {
+                if(flag1)
+                flag = true;
+                return  flag;
+            }
+            if ((node.left != null && node.right != null) || node.left == null && node.right == null) {
+                if(flag1)
+                flag = true;
+
+                isStrictTree(node.left);
+                isStrictTree(node.right);
+
+
+            }
+            if ((node.left == null && node.right != null) || (node.left != null && node.right == null))
+            {
+                flag = false;
+                flag1 = false;
+                //return flag;
+            }
+
+
+            return flag;
+        }
+
+    }
